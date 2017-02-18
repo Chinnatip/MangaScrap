@@ -1,0 +1,84 @@
+<!-- Navbar and Header -->
+<nav class="nav-extended z-depth-0">
+  <div class="nav-wrapper container">
+    <a href="index.html" class="brand-logo"><i class="material-icons">camera</i>Gallery</a>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li class="active"><a href="index.html">Gallery</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="docs.html">Docs</a></li>
+    </ul>
+
+    <div class="nav-header center">
+      <h1>I MAKE THINGS</h1>
+      <div class="tagline">Portfolio</div>
+    </div>
+  </div>
+</nav>
+<ul class="side-nav" id="nav-mobile">
+  <li class="active"><a href="index.html"><i class="material-icons">camera</i>Gallery</a></li>
+  <li><a href="blog.html"><i class="material-icons">edit</i>Blog</a></li>
+  <li><a href="docs.html"><i class="material-icons">school</i>Docs</a></li>
+</ul>
+
+<!-- Fixed Masonry Filters -->
+<nav>
+  <div class="categories-container">
+    <ul class="categories container">
+      <li class="active"><a href="#all">All</a></li>
+      <li><a href="#polygon">Polygon</a></li>
+      <li><a href="#bigbang">Big Bang</a></li>
+      <li><a href="#sacred">Sacred Geometry</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div id="portfolio" class="section gray">
+  <div class="container">
+    <div class="gallery row">
+
+      <% @manga_lists.each do |m| %>
+      <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
+        <div class="gallery-curve-wrapper">
+          <a class="gallery-cover gray">
+            <img class="responsive-img" src="<%= m[:image] %>" alt="placeholder">
+          </a>
+          <div class="gallery-header">
+            <span><%= m[:name] %></span><br>
+            <%= link_to m[:chapter_lastest], index_reader_path(:url_link => m[:chapter_link],:url_web => m[:link]) %> | 
+            rating: <%= m[:rating] %> <br>
+            <span class="_genre">
+              <% m[:genre].each_with_index do |a,index|%>
+                <%= a %>,
+              <% end %>
+            </span>
+          </div>
+          <div class="gallery-body">
+            <div class="title-wrapper">
+              <h3><%= m[:name] %></h3>
+              <span class="price">rating: <%= m[:rating] %></span>
+            </div>
+            <p class="description"> Chapter lists</p>
+            <ul>
+
+            </ul>
+            <div class="carousel-wrapper">
+              <div class="carousel">
+                <a class="carousel-item" href="#one!"><img src="http://placehold.it/300x200"></a>
+                <a class="carousel-item" href="#two!"><img src="http://placehold.it/300x200"></a>
+                <a class="carousel-item" href="#three!"><img src="http://placehold.it/300x200"></a>
+                <a class="carousel-item" href="#four!"><img src="http://placehold.it/300x200"></a>
+                <a class="carousel-item" href="#five!"><img src="http://placehold.it/300x200"></a>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-action">
+            <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">favorite</i></a>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+    </div>
+</div>
+</div>

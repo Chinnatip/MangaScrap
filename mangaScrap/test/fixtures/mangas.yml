@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  chapter: 1
+  viewer: 1
+  source: MyString
+  rating: MyString
+  author: MyString
+
+two:
+  name: MyString
+  chapter: 1
+  viewer: 1
+  source: MyString
+  rating: MyString
+  author: MyString

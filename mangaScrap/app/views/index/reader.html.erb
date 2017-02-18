@@ -1,0 +1,16 @@
+<div class="side-item">
+  <ul>
+    <% @chapter.each do |c|%>
+      <li> <%= link_to c[:name] , index_reader_path(:url_link => c[:url],:url_web => @manga_path) %> </li>
+    <% end %>
+  </ul>
+</div>
+<div class="top-item"> MangaRiser </div>
+<br>
+<br>
+<br>
+<% @image.each do |i| %>
+  <div class="container">
+    <img class="_gallery" src="<%= i %>" alt="">
+  </div>
+<% end %>

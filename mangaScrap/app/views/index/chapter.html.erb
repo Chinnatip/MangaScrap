@@ -1,0 +1,7 @@
+<br>
+<br>
+hello <%= @path %> <br>
+<% @chapter.each do |c| %>
+  <%= c[:name] %> |
+  <%= link_to 'อ่านตอนนี้', index_reader_path(:url_link => c[:url],:url_web => @path) %> <br>
+<% end %>

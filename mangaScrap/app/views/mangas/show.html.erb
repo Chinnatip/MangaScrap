@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @manga.name %>
+</p>
+
+<p>
+  <strong>Chapter:</strong>
+  <%= @manga.chapter %>
+</p>
+
+<p>
+  <strong>Viewer:</strong>
+  <%= @manga.viewer %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @manga.source %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @manga.rating %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @manga.author %>
+</p>
+
+<%= link_to 'Edit', edit_manga_path(@manga) %> |
+<%= link_to 'Back', mangas_path %>
