@@ -23,6 +23,33 @@ class IndexController < ApplicationController
     @image     = get_image_set(@path)
   end
 
+  def sample
+    manga = params[:mangaInfo]
+    container = []
+    scrap = Nokogiri::HTML(open(manga)).css("div#list div#stream_1 ul.chapter li").each_with_index do |file,index|
+      url_set = []
+      file.css('em a').each do |l|
+        url_set << l.first[1]
+      end
+      data = {
+        name: file.css('span').text ,
+        url:  'http://mangapark.me' + url_set.last + '1' ,
+        post: file.css('i').text 
+      }
+      puts 'data '
+      puts data
+      container << data
+    end
+    puts 'chapter list >>>'
+    puts container.to_json
+    @dataset = [
+      {index: 1, chapter_name: 'super fight', url: 'http://www.niceoppai.net'},
+      {index: 2, chapter_name: 'super fight', url: 'http://www.niceoppai.net'},
+      {index: 3, chapter_name: 'super fight', url: 'http://www.niceoppai.net'},
+    ]
+    render :json => container
+  end
+
   def get_manga_list
     container = []
     path = 'http://mangapark.me/genre?views'

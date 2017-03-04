@@ -335,3 +335,36 @@ nav {
     }
   }
 }
+
+.chapter {
+  .chapter_list {
+    border-bottom: 1px solid #f1f1f1;
+    padding: 6px 10px;
+    .post {
+      float: right;
+    }
+    @media #{$small-and-down} {
+      display: flex;
+      align-items: center;
+      &:hover{
+        background: #fbfbfb;
+      }
+      a{
+        vertical-align: middle;
+        width: 70%;
+        display: inline-block;
+        word-wrap: break-word;
+      }
+      .post{
+        display: inline-block;
+        width: 30%;
+        text-align: right;
+        font-size: 12px;
+        vertical-align: middle;
+        color: grey;
+        line-height: 14px;
+        font-weight: 300;
+      }
+    }
+  }
+}

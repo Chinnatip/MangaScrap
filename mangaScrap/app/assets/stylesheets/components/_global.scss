@@ -134,9 +134,11 @@ i {
 // Images
 img.responsive-img,
 video.responsive-video {
+  margin: auto !important;
   max-width: 100%;
   height: auto;
 }
+
 
 
 // Pagination

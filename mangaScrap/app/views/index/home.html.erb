@@ -10,8 +10,12 @@
     </ul>
 
     <div class="nav-header center">
-      <h1>I MAKE THINGS</h1>
-      <div class="tagline">Portfolio</div>
+      <h1>MangaRiser</h1>
+      <div class="tagline">ALL you Read it Goods!</div>
+      <div class="manga-search">
+        <input type="text" name="" value="" placeholder="insert your manga name">
+        <button type="submit" name="button">submit</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -36,49 +40,77 @@
 <div id="portfolio" class="section gray">
   <div class="container">
     <div class="gallery row">
-
+      <!-- manga list -->
       <% @manga_lists.each do |m| %>
-      <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
-        <div class="gallery-curve-wrapper">
-          <a class="gallery-cover gray">
-            <img class="responsive-img" src="<%= m[:image] %>" alt="placeholder">
-          </a>
-          <div class="gallery-header">
-            <span><%= m[:name] %></span><br>
-            <%= link_to m[:chapter_lastest], index_reader_path(:url_link => m[:chapter_link],:url_web => m[:link]) %> | 
-            rating: <%= m[:rating] %> <br>
-            <span class="_genre">
-              <% m[:genre].each_with_index do |a,index|%>
-                <%= a %>,
-              <% end %>
-            </span>
-          </div>
-          <div class="gallery-body">
-            <div class="title-wrapper">
-              <h3><%= m[:name] %></h3>
-              <span class="price">rating: <%= m[:rating] %></span>
+        <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
+          <div class="gallery-curve-wrapper">
+            <a class="gallery-cover gray gallery-block">
+              <img class="responsive-img" src="<%= m[:image] %>" alt="placeholder">
+            </a>
+            <div class="gallery-header">
+              <span class="manga-name"><%= m[:name] %></span><br>
+              <span class="manga-link" style="display:none"><%= m[:link]%></span>
+              <%= link_to m[:chapter_lastest], index_reader_path(:url_link => m[:chapter_link],:url_web => m[:link]) %> |
+              rating: <%= m[:rating] %> <br>
+              <span class="_genre">
+                <% m[:genre].each_with_index do |a,index|%>
+                  <%= a %>,
+                <% end %>
+              </span>
             </div>
-            <p class="description"> Chapter lists</p>
-            <ul>
-
-            </ul>
-            <div class="carousel-wrapper">
-              <div class="carousel">
-                <a class="carousel-item" href="#one!"><img src="http://placehold.it/300x200"></a>
-                <a class="carousel-item" href="#two!"><img src="http://placehold.it/300x200"></a>
-                <a class="carousel-item" href="#three!"><img src="http://placehold.it/300x200"></a>
-                <a class="carousel-item" href="#four!"><img src="http://placehold.it/300x200"></a>
-                <a class="carousel-item" href="#five!"><img src="http://placehold.it/300x200"></a>
+            <div class="gallery-body">
+              <div class="title-wrapper">
+                <h3><%= m[:name] %></h3>
+                <span class="price">rating: <%= m[:rating] %></span>
+              </div>
+              <p class="description"> Chapter lists</p>
+              <ul class="chapter">
+                <li class="loading" style="display:none">Loading data ...</li>
+              </ul>
+              <div class="carousel-wrapper">
+                <div class="carousel">
+                  <a class="carousel-item" href="#one!"><img src="http://placehold.it/300x200"></a>
+                  <a class="carousel-item" href="#two!"><img src="http://placehold.it/300x200"></a>
+                  <a class="carousel-item" href="#three!"><img src="http://placehold.it/300x200"></a>
+                  <a class="carousel-item" href="#four!"><img src="http://placehold.it/300x200"></a>
+                  <a class="carousel-item" href="#five!"><img src="http://placehold.it/300x200"></a>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="gallery-action">
-            <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">favorite</i></a>
+            <div class="gallery-action">
+              <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">favorite</i></a>
+            </div>
           </div>
         </div>
-      </div>
       <% end %>
-
     </div>
 </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+  });
+
+  //ajax chapter and manga info
+  $('.gallery-block').on('click',function(){
+    var chapterLink = $(this).parent().find('.gallery-header .manga-link').text();
+    var me = $(this).parent() ;
+    me.find('.loading').show();
+    $.ajax({
+      url:  '<%= index_sample_path %>',
+      data: { mangaInfo: chapterLink },
+      success: function(response){
+        for (var i = 0; i < response.length; i++) {
+          me.find('.gallery-body .chapter').append(
+            '<li class="chapter_list">'+
+              '<a target="_blank" href="'+ response[i].url+'">' + response[i].name + '</a>' +
+              '<span class="post">' + response[i].post + '</span>' +
+            '</li>'
+          );
+        }
+        me.find('.loading').hide();
+      }
+    });
+  });
+</script>

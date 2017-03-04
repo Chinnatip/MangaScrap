@@ -8721,6 +8721,7 @@ nav .categories-container .categories > li {
 }
 
 .gallery .gallery-cover {
+  background: #e6e6e6 !important;
   position: relative;
   overflow: hidden;
   display: block;
@@ -8740,6 +8741,7 @@ nav .categories-container .categories > li {
 }
 
 .gallery .gallery-cover img {
+  margin: auto !important;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.1);
   width: auto;
   display: block;
