@@ -368,3 +368,63 @@ nav {
     }
   }
 }
+
+#reader{
+  ul{
+    li.content{
+      border-bottom: 1px solid #d8d8d8;
+      padding-bottom: 8px;
+      margin-bottom: 6px;
+    }
+  }
+  img._gallery{
+    width: 100%;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px #c5c5c5;
+  }
+}
+
+#loading_image{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin: 20px 0;
+  img.load-ajax{
+    width: 24px;
+    margin-right: 10px;
+  }
+}
+
+#loading_chapter{
+  img.load-ajax{
+    width: 16px;
+    vertical-align: text-top;
+    margin-right: 4px;
+    margin-left: 18px;
+    margin-top: 0px;
+  }
+}
+
+#navigation-top,#navigation-bottom{
+  display: none;
+  border: 1px solid #cacaca;
+  padding: 5px 15px;
+  margin: 20px 0;
+  color: #ababab;
+  letter-spacing: 0.8px;
+}
+
+#chapter_list{
+  max-height: 80vh;
+  overflow: auto;
+  padding-right: 8px;
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: #eaeaea;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+}

@@ -18,12 +18,11 @@ class IndexController < ApplicationController
     old_path   = params[:url_link]
     substring  = old_path.length - 1
     @path      = old_path.first(substring)
+    @index     = params[:index] || 0
     @manga_path= params[:url_web]
-    @chapter   = get_chapter(@manga_path)
-    @image     = get_image_set(@path)
   end
 
-  def sample
+  def chapter_search
     manga = params[:mangaInfo]
     container = []
     scrap = Nokogiri::HTML(open(manga)).css("div#list div#stream_1 ul.chapter li").each_with_index do |file,index|
@@ -34,19 +33,20 @@ class IndexController < ApplicationController
       data = {
         name: file.css('span').text ,
         url:  'http://mangapark.me' + url_set.last + '1' ,
-        post: file.css('i').text 
+        post: file.css('i').text
       }
-      puts 'data '
-      puts data
       container << data
     end
-    puts 'chapter list >>>'
-    puts container.to_json
-    @dataset = [
-      {index: 1, chapter_name: 'super fight', url: 'http://www.niceoppai.net'},
-      {index: 2, chapter_name: 'super fight', url: 'http://www.niceoppai.net'},
-      {index: 3, chapter_name: 'super fight', url: 'http://www.niceoppai.net'},
-    ]
+    render :json => container
+  end
+
+  def manga_search
+    manga_path = params[:path]
+    container = []
+    scrap = Nokogiri::HTML(open(manga_path)).css("section.viewer div.canvas").each_with_index do |file,index|
+      image = file.css("a.img-link img").first['src']
+      container << image
+    end
     render :json => container
   end
 

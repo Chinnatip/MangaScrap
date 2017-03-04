@@ -1,16 +1,106 @@
-<div class="side-item">
-  <ul>
-    <% @chapter.each do |c|%>
-      <li> <%= link_to c[:name] , index_reader_path(:url_link => c[:url],:url_web => @manga_path) %> </li>
-    <% end %>
-  </ul>
-</div>
-<div class="top-item"> MangaRiser </div>
-<br>
-<br>
-<br>
-<% @image.each do |i| %>
-  <div class="container">
-    <img class="_gallery" src="<%= i %>" alt="">
+<!-- Navbar and Header -->
+<nav class="nav-extended z-depth-0 cyan">
+  <div class="nav-wrapper container">
+    <a href="/" class="brand-logo"><i class="material-icons">fingerprint</i>MangaRiser</a>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li class="active"><a href="<%= root_path %>">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="docs.html">Docs</a></li>
+    </ul>
   </div>
-<% end %>
+</nav>
+
+<div id="reader" class="section gray">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l9" id="image_container">
+        <div id="loading_image" style="display:none">
+          <img class="load-ajax" src="ajax-loader.gif" alt="">
+          Loading image...
+        </div>
+        <div id="navigation-top"></div>
+        <div id="imgs"></div>
+        <div id="navigation-bottom"></div>
+      </div>
+      <div class="col s12 l3" style="margin-top:24px;">
+        <ul class="section table-of-contents hide-on-med-and-down" id="chapter_list">
+          <li><a href="#gallery-expand" class="active">Now episode</a></li>
+          <li class="now-chapter content"></li>
+          <li><a href="#gallery-expand" class="active">Chapter list</a></li>
+          <li id="loading_chapter" style="display:none">
+            <img class="load-ajax" src="ajax-loader.gif" alt="">
+            Loading content...
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    chapterLink = '<%= params[:url_web] %>' ;
+    index_of    = '<%= params[:index] %>'   ;
+    manga_path  = '<%= @path %>' ;
+    navigate   = 0 ;
+
+    //show loader
+    $('#loading_chapter').show();
+    $('#loading_image').show();
+
+    //ajax call image content
+    $.ajax({
+      url: '<%= index_manga_search_path %>',
+      data: { path: manga_path },
+      success: function(response){
+        for (var i = 0; i < response.length; i++) {
+          //response[i]
+          $('#image_container #imgs').append(
+            '<img class="_gallery" src="'+ response[i] +'" alt="">'
+          );
+        }
+        $('#loading_image').hide();
+      }
+    });
+
+    //ajax call chapter detail
+    $.ajax({
+      url:  '<%= index_chapter_search_path %>',
+      data: { mangaInfo: chapterLink },
+      success: function(response){
+        for (var i = 0; i < response.length; i++) {
+          if ( i == index_of ) {
+            $('#chapter_list').append(
+              '<li class="content">'+
+                '<a class="active" href="'+ '<%= index_reader_path %>'+ '?url_link=' + response[i].url + '&url_web='+ chapterLink + '&index='+ i +'">' + response[i].name + '</a>' +
+              '</li>'
+            );
+          }else {
+            $('#chapter_list').append(
+              '<li class="content">'+
+                '<a href="'+ '<%= index_reader_path %>'+ '?url_link=' + response[i].url + '&url_web='+ chapterLink + '&index='+ i +'">' + response[i].name + '</a>' +
+              '</li>'
+            );
+          }
+        }
+        //add now episode
+        $('.now-chapter').append( '<a>'+response[index_of].name+'</a>');
+
+        //add navigation control
+        if (parseInt(index_of) == 0) {
+          navigate = '<a href="'+ '<%= index_reader_path %>'+ '?url_link=' + response[parseInt(index_of) + 1].url + '&url_web='+ chapterLink + '&index='+ (parseInt(index_of) + 1) +'"><< PREVIOUS</a>' ;
+        }else if (parseInt(index_of) == (response.length - 1)) {
+          navigate = '<a href="'+ '<%= index_reader_path %>'+ '?url_link=' + response[parseInt(index_of) - 1].url + '&url_web='+ chapterLink + '&index='+ (parseInt(index_of) - 1) +'">NEXT >></a>' ;
+        }else{
+          navigate = '<a href="'+ '<%= index_reader_path %>'+ '?url_link=' + response[parseInt(index_of) + 1].url + '&url_web='+ chapterLink + '&index='+ (parseInt(index_of) + 1) +'"><< PREVIOUS</a>' + ' | ' + '<a href="'+ '<%= index_reader_path %>'+ '?url_link=' + response[parseInt(index_of) - 1].url + '&url_web='+ chapterLink + '&index='+ (parseInt(index_of) - 1) +'">NEXT >></a>' ;
+        }
+        $('#navigation-top,#navigation-bottom').show();
+        $('#navigation-top,#navigation-bottom').append(
+          '<span>SELECT CHAPTER</span>' + '<span style="float:right">' + navigate + '</span>'
+        );
+        $('#loading_chapter').hide();
+      }
+    });
+  });
+</script>

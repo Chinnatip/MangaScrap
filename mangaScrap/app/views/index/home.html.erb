@@ -1,10 +1,10 @@
 <!-- Navbar and Header -->
 <nav class="nav-extended z-depth-0 cyan">
   <div class="nav-wrapper container">
-    <a href="index.html" class="brand-logo"><i class="material-icons">camera</i>Gallery</a>
+    <a href="<%= root_path %>" class="brand-logo"><i class="material-icons">fingerprint</i></a>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li class="active"><a href="index.html">Gallery</a></li>
+      <li class="active"><a href="<%= root_path %>">Home</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="docs.html">Docs</a></li>
     </ul>
@@ -97,13 +97,13 @@
     var me = $(this).parent() ;
     me.find('.loading').show();
     $.ajax({
-      url:  '<%= index_sample_path %>',
+      url:  '<%= index_chapter_search_path %>',
       data: { mangaInfo: chapterLink },
       success: function(response){
         for (var i = 0; i < response.length; i++) {
           me.find('.gallery-body .chapter').append(
             '<li class="chapter_list">'+
-              '<a href="'+ '<%= index_reader_path %>'+ '?url_link=' + response[i].url + '&url_web='+ chapterLink +'">' + response[i].name + '</a>' +
+              '<a href="'+ '<%= index_reader_path %>'+ '?url_link=' + response[i].url + '&url_web='+ chapterLink + '&index='+ i +'">' + response[i].name + '</a>' +
               '<span class="post">' + response[i].post + '</span>' +
             '</li>'
           );
