@@ -1,5 +1,5 @@
 <!-- Navbar and Header -->
-<nav class="nav-extended z-depth-0">
+<nav class="nav-extended z-depth-0 cyan">
   <div class="nav-wrapper container">
     <a href="index.html" class="brand-logo"><i class="material-icons">camera</i>Gallery</a>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -11,7 +11,7 @@
 
     <div class="nav-header center">
       <h1>MangaRiser</h1>
-      <div class="tagline">ALL you Read it Goods!</div>
+      <div class="tagline">ALL YOU READ IS GOODs!</div>
       <div class="manga-search">
         <input type="text" name="" value="" placeholder="insert your manga name">
         <button type="submit" name="button">submit</button>
@@ -26,7 +26,7 @@
 </ul>
 
 <!-- Fixed Masonry Filters -->
-<nav>
+<nav class="cyan">
   <div class="categories-container">
     <ul class="categories container">
       <li class="active"><a href="#all">All</a></li>
@@ -88,9 +88,8 @@
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-
-  });
+  //document ready do something
+  $(document).ready(function(){});
 
   //ajax chapter and manga info
   $('.gallery-block').on('click',function(){
@@ -104,7 +103,7 @@
         for (var i = 0; i < response.length; i++) {
           me.find('.gallery-body .chapter').append(
             '<li class="chapter_list">'+
-              '<a target="_blank" href="'+ response[i].url+'">' + response[i].name + '</a>' +
+              '<a href="'+ '<%= index_reader_path %>'+ '?url_link=' + response[i].url + '&url_web='+ chapterLink +'">' + response[i].name + '</a>' +
               '<span class="post">' + response[i].post + '</span>' +
             '</li>'
           );
