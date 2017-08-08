@@ -1,0 +1,142 @@
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+
+<a class="scroll-down" href="#">
+	<img src="images/down.png" alt="">
+	<span class="text">Scroll down</span>
+</a>
+
+<div class="comp1 comp">
+  <div class="bg" style=""></div>
+  <div class="glass" style="">
+    <div class="inner-glass" style=""></div>
+  </div>
+</div>
+
+<div class="comp2 comp">
+  <div class="bg" style=""></div>
+  <div class="glass left-sidebar">
+    <div class="inner-glass" style=""></div>
+  </div>
+</div>
+
+<div class="comp3 comp">
+  <div class="bg" style=""></div>
+  <div class="glass bottom-sidebar" style="">
+    <div class="inner-glass" style=""></div>
+  </div>
+</div>
+
+<div class="comp4 comp">
+  <div class="bg" style=""></div>
+  <div class="glass cross-path" style="">
+    <div class="inner-glass" style=""></div>
+  </div>
+</div>
+
+<div class="comp5 comp">
+  <div class="bg" style=""></div>
+  <div class="glass gantz" style="">
+    <div class="inner-glass" style=""></div>
+  </div>
+</div>
+
+<div class="comp6 comp">
+  <div class="bg" style=""></div>
+  <div class="glass" style="">
+    <div class="inner-glass" style=""></div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+var pageScroll = 2 ;
+
+$( document ).ready(function() {
+  var image1 = "https://images.unsplash.com/photo-1490584154387-0658b0cbfc18?dpr=2&auto=compress,format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop=&bg=" ;
+  var image2 = "https://images.unsplash.com/photo-1472634511615-7ce0fcc2c100?dpr=2&auto=format&fit=crop&w=1500&h=842&q=80&cs=tinysrgb&crop=&bg=" ;
+  var image3 = "https://images.unsplash.com/photo-1422224832140-0e546210efc3?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg=" ;
+  var image4 = "https://images.unsplash.com/photo-1454724985382-34190e93f08d?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg=" ;
+  var image5 = "https://images.unsplash.com/photo-1491555103944-7c647fd857e6?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg=" ;
+  var image6 = "https://images.unsplash.com/photo-1472772224448-b24d00409675?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg=" ;
+
+  //config image url here
+  $('.comp1 .bg').css("background", "url('" + image1 + "') no-repeat center center");
+  $('.comp1 .inner-glass').css("background", "url('" + image1 + "') no-repeat center center ");
+
+  $('.comp2 .bg').css("background", "url('" + image2 + "') no-repeat center center");
+  $('.comp2 .left-sidebar .inner-glass').css("background", "url('" + image2 + "') no-repeat 24% center ");
+
+  $('.comp3 .bg').css("background", "url('" + image3 + "') no-repeat center center");
+  $('.comp3 .bottom-sidebar .inner-glass').css("background", "url('" + image3 + "') no-repeat center 70% ");
+
+  $('.comp4 .bg').css("background", "url('" + image4 + "') no-repeat center center");
+  $('.comp4 .inner-glass').css("background", "url('" + image4 + "') no-repeat center center ");
+
+  $('.comp5 .bg').css("background", "url('" + image5 + "') no-repeat center center");
+  $('.comp5 .inner-glass').css("background", "url('" + image5 + "') no-repeat center center ");
+
+  $('.comp6 .bg').css("background", "url('" + image6 + "') no-repeat center center");
+  $('.comp6 .inner-glass').css("background", "url('" + image6 + "') no-repeat center center ");
+
+  // jQuery methods go here...
+	 $('.scroll-down').on('click',function(){
+		 //alert('hello world');
+		 // On-page links
+		 if (
+			 location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+			 &&
+			 location.hostname == this.hostname
+		 ) {
+			 // Figure out element to scroll to
+			 var target =  $('.comp' + pageScroll);
+			 if (target.length) {
+				 // Only prevent default if animation is actually gonna happen
+				 event.preventDefault();
+				 $('html, body').animate({
+					 scrollTop: target.offset().top
+				 }, 1000, function() {
+				 });
+			 }
+			 // loop scroll
+			 if (pageScroll != 6) {
+			 	pageScroll += 1;
+			 }else{
+				pageScroll = 1;
+			 }
+		 }
+	 });
+
+	 // Select all links with hashes
+	$('a[href*="#"]')
+	  // Remove links that don't actually link to anything
+	  .not('[href="#"]')
+	  .not('[href="#0"]')
+	  .click(function(event) {
+	  });
+});
+
+
+</script>
+
+<!-- table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @homes.each do |home| %>
+      <tr>
+        <td><%= link_to 'Show', home %></td>
+        <td><%= link_to 'Edit', edit_home_path(home) %></td>
+        <td><%= link_to 'Destroy', home, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Home', new_home_path % -->

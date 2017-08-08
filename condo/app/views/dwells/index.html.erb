@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dwells</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Lattitude</th>
+      <th>Longitude</th>
+      <th>Size</th>
+      <th>Cost per size</th>
+      <th>Type</th>
+      <th>Ref</th>
+      <th>Link</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dwells.each do |dwell| %>
+      <tr>
+        <td><%= dwell.name %></td>
+        <td><%= dwell.price %></td>
+        <td><%= dwell.lattitude %></td>
+        <td><%= dwell.longitude %></td>
+        <td><%= dwell.size %></td>
+        <td><%= dwell.cost_per_size %></td>
+        <td><%= dwell.type %></td>
+        <td><%= dwell.ref_id %></td>
+        <td><%= dwell.link %></td>
+        <td><%= link_to 'Show', dwell %></td>
+        <td><%= link_to 'Edit', edit_dwell_path(dwell) %></td>
+        <td><%= link_to 'Destroy', dwell, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dwell', new_dwell_path %>

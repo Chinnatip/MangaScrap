@@ -1,0 +1,57 @@
+.whole-blog
+  display: flex
+  .main
+    width: 100%
+    height: 100vh
+    overflow: auto
+  .head-nav
+    min-height: 48px
+    background-color: #dadada
+    display: flex
+    align-items: center
+    padding: 0 20px
+    .flex
+      flex-grow: 1
+  .side-right
+    width: 560px
+    height: 100vh
+    background: #ececec
+    box-shadow: inset 0 0 19px 0px #cacaca
+    .contain
+      margin-top: 48px
+  .contain
+    padding: 32px
+    .border
+      border: 1px solid grey
+      padding: 20px
+      font-size: 13px
+      color: grey
+      margin-bottom: 32px
+      ul.picker
+        background-color: #cacaca
+        li
+          color: black
+          font-size: 16px
+    .chatter
+      margin-top: 20px
+      border: 1px solid grey
+      height: 70vh
+      background-color: #ffffff
+      .canvasi
+        height: 50vh
+        overflow: auto
+        border-bottom: 1px solid grey
+        li
+          border-bottom: 1px solid grey
+          padding: 8px 14px
+          font-size: 12px
+          &:last-child
+            border-bottom: 0px
+      .inputer
+        background-color: #cacaca
+        height: 20vh
+        padding: 24px
+        textarea
+          width: 100%
+        button
+          float: right

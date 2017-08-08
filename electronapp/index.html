@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ELECTRICRAIG</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Hello Chinnatip!</h1>
+        <div class="">
+          We are using node <script>document.write(process.versions.node)</script>,
+          Chrome <script>document.write(process.versions.chrome)</script>,
+          and Electron <script>document.write(process.versions.electron)</script>.
+        </div>
+        <br>
+        <a target="_blank" class="btn btn-primary" href="http://www.facebook.com">facebook</a>
+        <a target="_blank" class="btn btn-danger" href="http://www.youtube.com">youtube</a>
+        <a id="notifier" class="btn btn-danger" href="#">Alert new pokemon!</a>
+      </div>
+    </div>
+    <div class="camera_capture">
+      <video autoplay></video>
+      <script type="text/javascript">
+        function errorCallback(e){
+          console.log('Error',e);
+        }
+        navigator.getUserMedia({
+          video: true,
+          audio: true
+        },(localMediaStream) => {
+          var video = document.querySelector('video')
+          video.src = window.URL.createObjectURL(localMediaStream)
+        }, errorCallback );
+      </script>
+    </div>
+    <!-- div>
+      <webview id="footer" style="width:600px;height:600px" src="http://www.youtube.com">
+        <div class="indicator"></div>
+      </webview>
+    </div>
+    <script type="text/javascript">
+      onload=()=>{
+        const webview = document.getElementById('footer')
+        const indicator = document.getElementsByClassName('indicator')
+      }
+    </script -->
+
+    <!-- script type="text/javascript">
+      const path = require('path')
+      document.getElementById('notifier').onclick=(event)=>{
+        const notifier = require('electron-notifications');
+        notifier.notify("facebook",{
+          message: 'New pokemon appear!',
+          icon: 'https://image.flaticon.com/icons/png/128/188/188989.png',
+          buttons: ['off','on']
+        });
+      };
+    </script -->
+    <!-- script type="text/javascript">
+      const {ipcRenderer} = require('electron')
+      ipcRenderer.send('openFile', ()=> {
+        console.log('Event sent,');
+      })
+      ipcRenderer.on('filename', (event, data) => {
+        document.write(data)
+      })
+    </script -->
+
+
+  </body>
+</html>

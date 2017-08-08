@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  price: 1
+  lattitude: 1.5
+  longitude: 1.5
+  size: 1
+  cost_per_size: 1
+  type: 
+  ref_id: 1
+  link: MyString
+
+two:
+  name: MyString
+  price: 1
+  lattitude: 1.5
+  longitude: 1.5
+  size: 1
+  cost_per_size: 1
+  type: 
+  ref_id: 1
+  link: MyString

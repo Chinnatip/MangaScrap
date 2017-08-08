@@ -1,0 +1,2 @@
+class RiserController < ApplicationController
+end

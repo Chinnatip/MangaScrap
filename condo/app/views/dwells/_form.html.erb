@@ -1,0 +1,62 @@
+<%= form_for(dwell) do |f| %>
+  <% if dwell.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dwell.errors.count, "error") %> prohibited this dwell from being saved:</h2>
+
+      <ul>
+      <% dwell.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lattitude %>
+    <%= f.text_field :lattitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :size %>
+    <%= f.number_field :size %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cost_per_size %>
+    <%= f.number_field :cost_per_size %>
+  </div>
+
+  <div class="field">
+    <%= f.label :type %>
+    <%= f.text_field :type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ref_id %>
+    <%= f.number_field :ref_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :link %>
+    <%= f.text_field :link %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

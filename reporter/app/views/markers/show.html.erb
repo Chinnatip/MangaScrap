@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @marker.name %>
+</p>
+
+<p>
+  <strong>Locaiton:</strong>
+  <%= @marker.locaiton %>
+</p>
+
+<p>
+  <strong>Reporter:</strong>
+  <%= @marker.reporter %>
+</p>
+
+<p>
+  <strong>Typr:</strong>
+  <%= @marker.typr %>
+</p>
+
+<p>
+  <strong>Like:</strong>
+  <%= @marker.like %>
+</p>
+
+<p>
+  <strong>Dislike:</strong>
+  <%= @marker.dislike %>
+</p>
+
+<p>
+  <strong>View:</strong>
+  <%= @marker.view %>
+</p>
+
+<%= link_to 'Edit', edit_marker_path(@marker) %> |
+<%= link_to 'Back', markers_path %>
